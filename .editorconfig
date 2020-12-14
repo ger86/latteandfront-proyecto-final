@@ -1,0 +1,14 @@
+```
+root = true
+
+[*]
+indent_style = space
+end_of_line = lf
+charset = utf-8
+
+[*.{cs,js,less,sass,css,html}]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+```
