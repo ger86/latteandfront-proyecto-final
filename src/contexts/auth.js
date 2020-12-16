@@ -22,7 +22,7 @@ export default function AuthProvider({children}) {
   const logout = useCallback(function () {
     localstorageUtils.removeItem(AUTH_KEY);
     setMagicWord(null);
-  }, []);
+  }, [setMagicWord]);
 
   const value = useMemo(
     () => ({
