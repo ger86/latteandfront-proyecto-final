@@ -1,0 +1,21 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  margin-bottom: .5rem;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+}
+
+.btn {
+  padding: 0.75rem 1rem;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  -webkit-appearance: none;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'styles/css/form.css';
 
 function BookDelete() {
   return (

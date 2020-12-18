@@ -8,6 +8,7 @@ import Home from 'components/views/Home';
 import Logout from 'components/views/Logout';
 import Books from 'components/views/Books';
 import BookEdit from 'components/views/BookEdit';
+import BookCreate from 'components/views/BookCreate';
 import BookDetail from 'components/views/BookDetail';
 import BookDelete from 'components/views/BookDelete';
 import Categories from 'components/views/Categories';
@@ -22,6 +23,7 @@ import {
   BOOK_DELETE,
   BOOK_EDIT,
   BOOK_DETAIL,
+  BOOK_CREATE,
   CATEGORIES,
   CATEGORY_DELETE,
   CATEGORY_EDIT,
@@ -42,6 +44,7 @@ function App() {
               <PrivateRoute path={BOOKS} component={Books} exact />
               <PrivateRoute path={BOOK_DETAIL} component={BookDetail} exact />
               <PrivateRoute path={BOOK_EDIT} component={BookEdit} exact />
+              <PrivateRoute path={BOOK_CREATE} component={BookCreate} exact />
               <PrivateRoute path={BOOK_DELETE} component={BookDelete} exact />
               <PrivateRoute path={CATEGORIES} component={Categories} exact />
               <PrivateRoute path={CATEGORY_DETAIL} component={CategoryDetail} exact />
