@@ -36,6 +36,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  title: 'Título por defecto',
   image: null,
   to: null,
   footer: null

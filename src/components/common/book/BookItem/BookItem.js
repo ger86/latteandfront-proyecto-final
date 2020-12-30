@@ -8,7 +8,8 @@ import Categories from './components/Categories';
 function BookItem({book}) {
   return (
     <Card
-      {...book}
+      title={book.title}
+      image={book.image}
       footer={() => <Categories book={book} />}
       to={generatePath(BOOK_DETAIL, {id: book.id})}
     />
