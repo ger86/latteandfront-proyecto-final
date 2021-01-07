@@ -1,5 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Container from 'components/ui/Container';
+import {BOOKS, HOME} from 'config/router/paths';
 import useAuthContext from 'hooks/useAuthContext';
 import Menu from './Menu';
 import {Header as StyledHeader, Logo} from './styledComponents';
@@ -10,7 +12,9 @@ export default function Header() {
   return (
     <Container>
       <StyledHeader>
-        <Logo src={logo} alt="Librarify" />
+        <Link to={isAuthenticated ? BOOKS : HOME}>
+          <Logo src={logo} alt="Librarify" />
+        </Link>
         {isAuthenticated && <Menu />}
       </StyledHeader>
     </Container>

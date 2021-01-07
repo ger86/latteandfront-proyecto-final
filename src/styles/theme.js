@@ -42,6 +42,28 @@ export default {
         borderColor: blue.normal,
         text: 'white'
       }
+    },
+    danger: {
+      normal: {
+        backgroundColor: red.normal,
+        borderColor: red.normal,
+        text: 'white'
+      },
+      hover: {
+        backgroundColor: red.dark,
+        borderColor: red.dark,
+        text: 'white'
+      },
+      active: {
+        backgroundColor: red.dark,
+        borderColor: red.dark,
+        text: 'white'
+      },
+      disabled: {
+        backgroundColor: red.normal,
+        borderColor: red.normal,
+        text: 'white'
+      }
     }
   }
 };

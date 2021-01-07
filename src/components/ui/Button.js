@@ -37,3 +37,30 @@ export const PrimaryButton = styled(Button)`
     color: ${(props) => props.theme.button.primary.disabled.text};
   }
 `;
+
+export const DangerButton = styled(Button)`
+  background-color: ${(props) => props.theme.button.primary.normal.backgroundColor};
+  border-color: ${(props) => props.theme.button.primary.normal.borderColor};
+  color: ${(props) => props.theme.button.primary.normal.text};
+
+  &:hover {
+    background-color: ${(props) => props.theme.button.primary.hover.backgroundColor};
+    border-color: ${(props) => props.theme.button.primary.hover.borderColor};
+    color: ${(props) => props.theme.button.primary.hover.text};
+  }
+  &:focus {
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background-color: ${(props) => props.theme.button.primary.active.backgroundColor};
+    border-color: ${(props) => props.theme.button.primary.active.borderColor};
+    color: ${(props) => props.theme.button.primary.active.text};
+  }
+
+  &:disabled {
+    background-color: ${(props) => props.theme.button.primary.disabled.backgroundColor};
+    border-color: ${(props) => props.theme.button.primary.disabled.borderColor};
+    color: ${(props) => props.theme.button.primary.disabled.text};
+  }
+`;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
-import useBook from './hooks/useBook';
+import useBook from 'hooks/useBook';
 import BookDetailView from './BookDetailView';
 
 function BookDetail() {

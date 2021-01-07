@@ -1,6 +1,6 @@
 import React, {useState, useMemo} from 'react';
+import useCategories from 'hooks/useCategories';
 import useBooks from './hooks/useBooks';
-import useCategories from './hooks/useCategories';
 import BooksView from './BooksView';
 
 function Books() {

@@ -2,5 +2,7 @@ import styled from 'styled-components';
 
 export default styled.div`
   padding: 1.5rem;
-  background-color: red;
+  margin-top: ${props => props.mt ? `${props.mt}rem` : 0};
+  background-color: ${props => props.theme.colors.red.light};
+  color: white;
 `;

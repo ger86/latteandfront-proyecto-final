@@ -1,9 +1,9 @@
 import useFetch from 'hooks/useFetch';
 import {BACKEND} from 'consts/backend';
 
-export default function useBook(id) {
+export default function useBooks(bookId) {
   return useFetch({
-    url: `${BACKEND}/books/${id}`,
-    method: 'GET'
+    url: `${BACKEND}/books/${bookId}`,
+    method: 'GET',
   });
 }

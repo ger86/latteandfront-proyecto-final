@@ -10,6 +10,9 @@ async function processResponse(response) {
   if (!response.ok) {
     throw new Error(`Request failed with ${response.status}`);
   }
+  if (response.status === 204) {
+    return null;
+  }
   const json = await response.json();
   return json;
 }
@@ -25,6 +28,14 @@ const apiClient = {
   post: async function(url, body) {
     const response = await fetch(url, {
       method: 'POST',
+      headers,
+      body
+    });
+    return await processResponse(response);
+  },
+  delete: async function(url, body) {
+    const response = await fetch(url, {
+      method: 'DELETE',
       headers,
       body
     });
