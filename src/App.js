@@ -43,9 +43,9 @@ function App() {
                 <PublicRoute path={HOME} component={Home} exact />
                 <PrivateRoute path={LOGOUT} component={Logout} exact />
                 <PrivateRoute path={BOOKS} component={Books} exact />
+                <PrivateRoute path={BOOK_CREATE} component={BookCreate} exact />
                 <PrivateRoute path={BOOK_DETAIL} component={BookDetail} exact />
                 <PrivateRoute path={BOOK_EDIT} component={BookEdit} exact />
-                <PrivateRoute path={BOOK_CREATE} component={BookCreate} exact />
                 <PrivateRoute path={BOOK_DELETE} component={BookDelete} exact />
                 <PrivateRoute path={CATEGORIES} component={Categories} exact />
                 <PrivateRoute path={CATEGORY_DETAIL} component={CategoryDetail} exact />
