@@ -8,7 +8,7 @@ function CategorySelector({categories, onChangeCategory, currentCategoryId}) {
       <select onChange={onChangeCategory} value={currentCategoryId}>
         <option value="todas">Todas</option>
         {categories.map((category) => (
-          <option value={parseInt(category.id)} key={category.id}>
+          <option value={category.id} key={category.id}>
             {category.name}
           </option>
         ))}

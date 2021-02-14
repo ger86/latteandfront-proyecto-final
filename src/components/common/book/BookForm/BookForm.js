@@ -43,7 +43,7 @@ function BookForm({book}) {
       const data = {
         title: title,
         base64Image: base64Image,
-        categories: prepareCategories(book.categories, selectedCategories)
+        categories: prepareCategories(book ? book.categories : [], selectedCategories)
       };
       const url = book ? `${BACKEND}/books/${book.id}` : `${BACKEND}/books`;
       const newBook = await apiClient.post(url, JSON.stringify(data));

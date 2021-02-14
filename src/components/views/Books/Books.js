@@ -4,7 +4,7 @@ import useBooks from './hooks/useBooks';
 import BooksView from './BooksView';
 
 function Books() {
-  const [currentCategoryId, setCurrentCategoryId] = useState(-1);
+  const [currentCategoryId, setCurrentCategoryId] = useState('');
   const {data: books, isLoading: booksAreLoading, isFailed: getBooksFailed} = useBooks();
   const {
     data: categories,
@@ -17,9 +17,9 @@ function Books() {
       if (!books) {
         return null;
       }
-      if (currentCategoryId > -1) {
+      if (currentCategoryId !== '') {
         return books.filter((book) => {
-          return book.categories.some((cat) => cat.id === parseInt(currentCategoryId));
+          return book.categories.some((cat) => cat.id === currentCategoryId);
         });
       } else {
         return books;
