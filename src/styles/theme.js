@@ -10,6 +10,7 @@ export default {
     gray,
   },
   primary: blue,
+  secondary: green,
   shape: {
     borderColor: gray[300],
     borderRadius: '0.25rem'

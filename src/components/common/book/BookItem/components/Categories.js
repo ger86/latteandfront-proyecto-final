@@ -6,10 +6,10 @@ import bookPropTypes from 'propTypes/book';
 
 function Categories({book}) {
   return (
-    <FlexContainer justifyContent="flex-start">
+    <FlexContainer justifyContent="flex-start" marginTop="16px" withGutter>
       {book.categories.map((category) => (
         <Box key={`category--${category.id}`} marginRight={1}>
-          <Badge>{category.name}</Badge>
+          <Badge color="secondary">{category.name}</Badge>
         </Box>
       ))}
     </FlexContainer>

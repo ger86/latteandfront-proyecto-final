@@ -19,7 +19,8 @@ module.exports = {
   root: true,
   rules: {
     semi: [2, 'always', {omitLastInOneLineBlock: true}],
-    'no-unused-vars': 2,
+    'no-unused-vars': 1,
+    'no-empty': 1,
     'react/no-did-update-set-state': ['off'],
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',

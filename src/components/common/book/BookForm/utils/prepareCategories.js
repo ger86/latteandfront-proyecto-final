@@ -17,7 +17,7 @@ export default function prepareCategories(oldCategories, newCategories) {
     } else {
       return {
         ...acc,
-        [indexForNewCategories++]: category,
+        [indexForNewCategories++]: category
       };
     }
   }, {});

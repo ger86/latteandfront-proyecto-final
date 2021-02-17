@@ -3,6 +3,7 @@ import {generatePath, useHistory} from 'react-router-dom';
 import {BACKEND} from 'consts/backend';
 import {BOOK_DETAIL} from 'config/router/paths';
 import useCategories from 'hooks/useCategories';
+import useAuthors from 'hooks/useAuthors';
 import bookPropTypes from 'propTypes/book';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
@@ -14,7 +15,8 @@ function BookForm({book}) {
   const [error, setError] = useState(null);
   const [title, setTitle] = useState(book ? book.title : '');
   const [image, setImage] = useState(null);
-  const [selectedCategories, setSelectedCategories] = useState(book?.categories);
+  const [selectedCategories, setSelectedCategories] = useState(book ? book.categories : []);
+  const [selectedAuthors, setSelectedAuthors] = useState(book ? book.authors : []);
   const history = useHistory();
 
   const {
@@ -22,6 +24,12 @@ function BookForm({book}) {
     isLoading: categoriesAreLoading,
     isFailed: getCategoriesFailed
   } = useCategories();
+
+  const {
+    data: authors,
+    isLoading: authorsAreLoading,
+    isFailed: getAuthorsFailed
+  } = useAuthors();
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
@@ -43,7 +51,8 @@ function BookForm({book}) {
       const data = {
         title: title,
         base64Image: base64Image,
-        categories: prepareCategories(book ? book.categories : [], selectedCategories)
+        categories: prepareCategories(book ? book.categories : [], selectedCategories),
+        authors: prepareCategories(book ? book.authors : [], selectedAuthors)
       };
       const url = book ? `${BACKEND}/books/${book.id}` : `${BACKEND}/books`;
       const newBook = await apiClient.post(url, JSON.stringify(data));
@@ -54,11 +63,11 @@ function BookForm({book}) {
     }
   }
 
-  if (categoriesAreLoading) {
+  if (categoriesAreLoading || authorsAreLoading) {
     return <div>Cargando información</div>;
   }
 
-  if (getCategoriesFailed) {
+  if (getCategoriesFailed || getAuthorsFailed) {
     return <div>¡Vaya! Un error ocurrió</div>;
   }
 
@@ -77,8 +86,11 @@ function BookForm({book}) {
       title={title}
       handleTitleChange={handleTitleChange}
       categories={categories}
-      setSelectedCategories={setSelectedCategories}
-      selectedCategories={selectedCategories}
+      handleCategoriesChange={setSelectedCategories}
+      initialCategories={selectedCategories}
+      authors={authors}
+      handleAuthorsChange={setSelectedAuthors}
+      initialAuthors={selectedAuthors}
       handleImageChange={handleImageChange}
       handleSubmit={handleSubmit}
       isSending={isSending}
