@@ -8,4 +8,7 @@ export default PropTypes.shape({
   image: PropTypes.string,
   categories: PropTypes.arrayOf(categoryPropTypes),
   authors: PropTypes.arrayOf(authorsPropTypes),
+  description: PropTypes.string,
+  readAt: PropTypes.string,
+  score: PropTypes.number
 });

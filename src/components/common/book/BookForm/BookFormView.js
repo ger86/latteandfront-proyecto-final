@@ -1,12 +1,15 @@
 import React, {useMemo, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import CreatableSelect from 'react-select/creatable';
+import DatePicker from 'react-date-picker';
 import FormGroup from 'components/ui/form/FormGroup';
 import Error from 'components/ui/form/Error';
 import FormLabel from 'components/ui/form/FormLabel';
 import ImageFieldPreview from 'components/ui/form/ImageFieldPreview';
 import {PrimaryButton} from 'components/ui/Button';
 import Input from 'components/ui/form/Input';
+import Textarea from 'components/ui/form/Textarea';
+import StarsInput from 'components/common/form/StarsInput';
 import categoryPropTypes from 'propTypes/category';
 import authorPropTypes from 'propTypes/author';
 import convertToSelectOption from 'utils/convertToSelectOption';
@@ -17,6 +20,12 @@ function BookFormView({
   handleSubmit,
   title,
   handleTitleChange,
+  description,
+  handleDescriptionChange,
+  readAt,
+  handleReadAtChange,
+  score,
+  handleScoreChange,
   handleImageChange,
   imageUrl,
   handleCategoriesChange,
@@ -94,6 +103,20 @@ function BookFormView({
         <FormLabel>Título</FormLabel>
         <Input type="text" value={title} onChange={handleTitleChange} name="title" />
       </FormGroup>
+      <FormGroup>
+        <FormLabel>Descripción</FormLabel>
+        <Textarea value={description} onChange={handleDescriptionChange} name="title" rows={6} />
+      </FormGroup>
+      <FormGroup>
+        <FormLabel>Fecha de finalización</FormLabel>
+        <div>
+          <DatePicker onChange={handleReadAtChange} value={readAt} />
+        </div>
+      </FormGroup>
+      <FormGroup>
+        <FormLabel>Puntuación</FormLabel>
+        <StarsInput value={score} onChange={handleScoreChange} />
+      </FormGroup>
       <ImageFieldPreview label="Portada" onSelectImage={handleImageChange} imageUrl={imageUrl} />
       <FormGroup>
         <FormLabel>Categorías</FormLabel>
@@ -131,6 +154,12 @@ BookFormView.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,
+  description: PropTypes.string.isRequired,
+  handleDescriptionChange: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
+  handleScoreChange: PropTypes.func.isRequired,
+  readAt: PropTypes.object.isRequired,
+  handleReadAtChange: PropTypes.func.isRequired,
   imageUrl: PropTypes.string,
   handleImageChange: PropTypes.func.isRequired,
   initialCategories: PropTypes.arrayOf(

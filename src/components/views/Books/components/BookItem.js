@@ -1,10 +1,12 @@
 import React from 'react';
 import {generatePath} from 'react-router-dom';
 import Card from 'components/ui/Card';
+import Box from 'components/ui/Box';
+import Stars from 'components/ui/Stars';
+import Categories from 'components/common/book/Categories';
+import Authors from 'components/common/book/Authors';
 import {BOOK_DETAIL} from 'config/router/paths';
 import bookPropTypes from 'propTypes/book';
-import Categories from './components/Categories';
-import Authors from './components/Authors';
 
 function BookItem({book}) {
   return (
@@ -13,6 +15,12 @@ function BookItem({book}) {
       image={book.image}
       footer={() => (
         <>
+          {' '}
+          {book.score && (
+            <Box marginBottom={1}>
+              <Stars stars={book.score} />
+            </Box>
+          )}
           <Authors book={book} />
           <Categories book={book} />
         </>

@@ -9,3 +9,4 @@ export const CATEGORIES = '/categories';
 export const CATEGORY_DETAIL = '/categories/:id';
 export const CATEGORY_DELETE = '/categories/:id/delete';
 export const CATEGORY_EDIT = '/categories/:id/edit';
+export const AUTHORS = '/authors';

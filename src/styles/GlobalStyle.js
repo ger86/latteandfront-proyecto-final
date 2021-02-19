@@ -17,6 +17,7 @@ export default createGlobalStyle`
     color: ${props => props.theme.fontColor.body};
     font-size: ${props => props.theme.fontSize.body};
     font-family: ${props => props.theme.fontFamily.primary};
+    line-height: 1.6;
   }
 
   h1 {
@@ -41,5 +42,9 @@ export default createGlobalStyle`
     font-size: ${props => props.theme.fontSize.h4};
     font-weight: bold;
     margin-bottom: 1rem;
+  }
+
+  strong {
+    font-weight: bold;
   }
 `;

@@ -12,6 +12,7 @@ const BookCreate = lazy(() => import('components/views/BookCreate'));
 const BookDetail = lazy(() => import('components/views/BookDetail'));
 const BookDelete = lazy(() => import('components/views/BookDelete'));
 const Categories = lazy(() => import('components/views/Categories'));
+const Authors = lazy(() => import('components/views/Authors'));
 const CategoryDetail = lazy(() => import('components/views/CategoryDetail'));
 const CategoryDelete = lazy(() => import('components/views/CategoryDelete'));
 const CategoryEdit = lazy(() => import('components/views/CategoryEdit'));
@@ -27,7 +28,8 @@ import {
   CATEGORIES,
   CATEGORY_DELETE,
   CATEGORY_EDIT,
-  CATEGORY_DETAIL
+  CATEGORY_DETAIL,
+  AUTHORS
 } from 'config/router/paths';
 import theme from 'styles/theme';
 import GlobalStyle from 'styles/GlobalStyle';
@@ -51,6 +53,7 @@ function App() {
                 <PrivateRoute path={CATEGORY_DETAIL} component={CategoryDetail} exact />
                 <PrivateRoute path={CATEGORY_EDIT} component={CategoryEdit} exact />
                 <PrivateRoute path={CATEGORY_DELETE} component={CategoryDelete} exact />
+                <PrivateRoute path={AUTHORS} component={Authors} exact />
               </Switch>
             </MainLayout>
           </Router>

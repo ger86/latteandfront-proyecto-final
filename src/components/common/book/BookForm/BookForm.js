@@ -7,13 +7,17 @@ import useAuthors from 'hooks/useAuthors';
 import bookPropTypes from 'propTypes/book';
 import apiClient from 'utils/apiClient';
 import blobToBase64 from 'utils/blobToBase64';
+import {formatDateToBackendFormat} from 'utils/dateUtils';
 import BookFormView from './BookFormView';
 import prepareCategories from './utils/prepareCategories';
 
 function BookForm({book}) {
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState(null);
+  const [readAt, setReadAt] = useState(book && book.readAt ? new Date(book.readAt) : null);
   const [title, setTitle] = useState(book ? book.title : '');
+  const [description, setDescription] = useState(book ? book.description ?? '' : '');
+  const [score, setScore] = useState(book ? book.score ?? 0 : 0);
   const [image, setImage] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState(book ? book.categories : []);
   const [selectedAuthors, setSelectedAuthors] = useState(book ? book.authors : []);
@@ -25,14 +29,22 @@ function BookForm({book}) {
     isFailed: getCategoriesFailed
   } = useCategories();
 
-  const {
-    data: authors,
-    isLoading: authorsAreLoading,
-    isFailed: getAuthorsFailed
-  } = useAuthors();
+  const {data: authors, isLoading: authorsAreLoading, isFailed: getAuthorsFailed} = useAuthors();
 
   function handleTitleChange(event) {
     setTitle(event.target.value);
+  }
+
+  function handleDescriptionChange(event) {
+    setDescription(event.target.value);
+  }
+
+  function handleScoreChange(value) {
+    setScore(value);
+  }
+
+  function handleReadAtChange(value) {
+    setReadAt(value);
   }
 
   function handleImageChange(event) {
@@ -49,8 +61,11 @@ function BookForm({book}) {
       setIsSending(true);
       const base64Image = await blobToBase64(image);
       const data = {
-        title: title,
-        base64Image: base64Image,
+        title,
+        description,
+        base64Image,
+        score,
+        readAt: formatDateToBackendFormat(readAt),
         categories: prepareCategories(book ? book.categories : [], selectedCategories),
         authors: prepareCategories(book ? book.authors : [], selectedAuthors)
       };
@@ -85,6 +100,12 @@ function BookForm({book}) {
       imageUrl={imageUrl}
       title={title}
       handleTitleChange={handleTitleChange}
+      description={description}
+      handleDescriptionChange={handleDescriptionChange}
+      readAt={readAt}
+      handleReadAtChange={handleReadAtChange}
+      score={score}
+      handleScoreChange={handleScoreChange}
       categories={categories}
       handleCategoriesChange={setSelectedCategories}
       initialCategories={selectedCategories}

@@ -1,20 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FlexContainer from 'components/ui/FlexContainer';
-import BookItem from 'components/common/book/BookItem';
+import authorPropTypes from 'propTypes/author';
 import bookPropTypes from 'propTypes/book';
 import categoryPropTypes from 'propTypes/category';
-import CategorySelector from './components/CategorySelector';
+import FilterSelector from './components/FilterSelector';
+import BookItem from './components/BookItem';
 
-function BooksView({categories, handleCategoryChange, currentCategoryId, books}) {
+function BooksView({
+  categories,
+  handleCategoryChange,
+  currentCategoryId,
+  books,
+  authors,
+  handleAuthorChange,
+  currentAuthorId
+}) {
   return (
     <>
       <FlexContainer justifyContent="flex-end">
-        <CategorySelector
-          categories={categories}
-          onChangeCategory={handleCategoryChange}
-          currentCategoryId={currentCategoryId}
+        <FilterSelector
+          elements={categories}
+          onChange={handleCategoryChange}
+          value={currentCategoryId}
         />
+        <FilterSelector elements={authors} onChange={handleAuthorChange} value={currentAuthorId} />
       </FlexContainer>
       <div>
         {books.map((book) => (
@@ -28,7 +38,10 @@ function BooksView({categories, handleCategoryChange, currentCategoryId, books})
 BooksView.propTypes = {
   categories: PropTypes.arrayOf(categoryPropTypes).isRequired,
   handleCategoryChange: PropTypes.func.isRequired,
-  currentCategoryId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  currentCategoryId: PropTypes.string.isRequired,
+  authors: PropTypes.arrayOf(authorPropTypes).isRequired,
+  handleAuthorChange: PropTypes.func.isRequired,
+  currentAuthorId: PropTypes.string.isRequired,
   books: PropTypes.arrayOf(bookPropTypes).isRequired
 };
 
