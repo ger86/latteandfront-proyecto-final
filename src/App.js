@@ -12,6 +12,7 @@ const BookCreate = lazy(() => import('components/views/BookCreate'));
 const BookDetail = lazy(() => import('components/views/BookDetail'));
 const BookDelete = lazy(() => import('components/views/BookDelete'));
 const Categories = lazy(() => import('components/views/Categories'));
+const CategoryCreate = lazy(() => import('components/views/CategoryCreate'));
 const Authors = lazy(() => import('components/views/Authors'));
 const CategoryDetail = lazy(() => import('components/views/CategoryDetail'));
 const CategoryDelete = lazy(() => import('components/views/CategoryDelete'));
@@ -26,6 +27,7 @@ import {
   BOOK_DETAIL,
   BOOK_CREATE,
   CATEGORIES,
+  CATEGORY_CREATE,
   CATEGORY_DELETE,
   CATEGORY_EDIT,
   CATEGORY_DETAIL,
@@ -50,6 +52,7 @@ function App() {
                 <PrivateRoute path={BOOK_EDIT} component={BookEdit} exact />
                 <PrivateRoute path={BOOK_DELETE} component={BookDelete} exact />
                 <PrivateRoute path={CATEGORIES} component={Categories} exact />
+                <PrivateRoute path={CATEGORY_CREATE} component={CategoryCreate} exact />
                 <PrivateRoute path={CATEGORY_DETAIL} component={CategoryDetail} exact />
                 <PrivateRoute path={CATEGORY_EDIT} component={CategoryEdit} exact />
                 <PrivateRoute path={CATEGORY_DELETE} component={CategoryDelete} exact />

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navigation, StyledNavLink} from './styledComponents';
-import {AUTHORS, BOOKS, CATEGORIES, LOGOUT, BOOK_CREATE} from 'config/router/paths';
+import {AUTHORS, BOOKS, CATEGORIES, LOGOUT, BOOK_CREATE, CATEGORY_CREATE} from 'config/router/paths';
 
 function Menu() {
   return (
@@ -18,6 +18,9 @@ function Menu() {
           </StyledNavLink>
           <StyledNavLink to={BOOK_CREATE} activeClassName="active" exact>
             Añadir libro
+          </StyledNavLink>
+          <StyledNavLink to={CATEGORY_CREATE} activeClassName="active" exact>
+            Añadir categoría
           </StyledNavLink>
           <StyledNavLink to={LOGOUT} activeClassName="active" exact>
             Cerrar sesión
