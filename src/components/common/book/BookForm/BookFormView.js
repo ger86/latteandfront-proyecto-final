@@ -17,6 +17,8 @@ import convertToSelectOption from 'utils/convertToSelectOption';
 const formatCreateLabel = (inputValue) => `Añadir ${inputValue}`;
 
 function BookFormView({
+  step,
+  setStep,
   handleSubmit,
   title,
   handleTitleChange,
@@ -99,58 +101,100 @@ function BookFormView({
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormGroup>
-        <FormLabel>Título</FormLabel>
-        <Input type="text" value={title} onChange={handleTitleChange} name="title" />
-      </FormGroup>
-      <FormGroup>
-        <FormLabel>Descripción</FormLabel>
-        <Textarea value={description} onChange={handleDescriptionChange} name="title" rows={6} />
-      </FormGroup>
-      <FormGroup>
-        <FormLabel>Fecha de finalización</FormLabel>
-        <div>
-          <DatePicker onChange={handleReadAtChange} value={readAt} />
-        </div>
-      </FormGroup>
-      <FormGroup>
-        <FormLabel>Puntuación</FormLabel>
-        <StarsInput value={score} onChange={handleScoreChange} />
-      </FormGroup>
-      <ImageFieldPreview label="Portada" onSelectImage={handleImageChange} imageUrl={imageUrl} />
-      <FormGroup>
-        <FormLabel>Categorías</FormLabel>
-        <div>
-          <CreatableSelect
-            onChange={onChangeCategories}
-            defaultValue={defaultCategories}
-            formatCreateLabel={formatCreateLabel}
-            options={categoriesOptions}
-            isMulti
+      {step === 0 && (
+        <>
+          <FormGroup>
+            <FormLabel>Título</FormLabel>
+            <Input type="text" value={title} onChange={handleTitleChange} name="title" />
+          </FormGroup>
+          <PrimaryButton type="submit" onClick={() => setStep(1)}>
+            Siguiente
+          </PrimaryButton>
+        </>
+      )}
+      {step === 1 && (
+        <>
+          <FormGroup>
+            <FormLabel>Descripción</FormLabel>
+            <Textarea
+              value={description}
+              onChange={handleDescriptionChange}
+              name="title"
+              rows={6}
+            />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel>Fecha de finalización</FormLabel>
+            <div>
+              <DatePicker onChange={handleReadAtChange} value={readAt} />
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <FormLabel>Puntuación</FormLabel>
+            <StarsInput value={score} onChange={handleScoreChange} />
+          </FormGroup>
+          <ImageFieldPreview
+            label="Portada"
+            onSelectImage={handleImageChange}
+            imageUrl={imageUrl}
           />
-        </div>
-      </FormGroup>
-      <FormGroup>
-        <FormLabel>Autores</FormLabel>
-        <div>
-          <CreatableSelect
-            onChange={onChangeAuthors}
-            defaultValue={defaultAuthors}
-            formatCreateLabel={formatCreateLabel}
-            options={authorsOptions}
-            isMulti
-          />
-        </div>
-      </FormGroup>
-      <PrimaryButton type="submit" disabled={isSending}>
-        {isSending ? 'Enviando' : 'Enviar'}
-      </PrimaryButton>
-      {error && <Error mt={1}>{error.message}</Error>}
+          <FormGroup>
+            <FormLabel>Categorías</FormLabel>
+            <div>
+              <CreatableSelect
+                onChange={onChangeCategories}
+                defaultValue={defaultCategories}
+                formatCreateLabel={formatCreateLabel}
+                options={categoriesOptions}
+                isMulti
+              />
+            </div>
+          </FormGroup>
+          <FormGroup>
+            <FormLabel>Autores</FormLabel>
+            <div>
+              <CreatableSelect
+                onChange={onChangeAuthors}
+                defaultValue={defaultAuthors}
+                formatCreateLabel={formatCreateLabel}
+                options={authorsOptions}
+                isMulti
+              />
+            </div>
+          </FormGroup>
+          <div>
+            <PrimaryButton type="submit" onClick={() => setStep(0)}>
+              Anterior
+            </PrimaryButton>
+            <PrimaryButton type="submit" onClick={() => setStep(2)}>
+              Siguiente
+            </PrimaryButton>
+          </div>
+        </>
+      )}
+      {step === 2 && (
+        <>
+          <div>
+            <h2>Resumen</h2>
+            <p>
+              <strong>Título:</strong> {title}
+            </p>
+          </div>
+          <div>
+            <PrimaryButton type="submit" disabled={isSending}>
+              {isSending ? 'Enviando' : 'Enviar'}
+            </PrimaryButton>
+            {error && <Error mt={1}>{error.message}</Error>}
+          </div>
+        </>
+      )}
     </form>
   );
 }
 
 BookFormView.propTypes = {
+  step: PropTypes.number.isRequired,
+  setStep: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   handleTitleChange: PropTypes.func.isRequired,

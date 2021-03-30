@@ -11,6 +11,7 @@ import BookFormView from './BookFormView';
 import prepareCategories from './utils/prepareCategories';
 
 function BookForm({book, onCreated}) {
+  const [step, setStep] = useState(0);
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState(null);
   const [readAt, setReadAt] = useState(book && book.readAt ? new Date(book.readAt) : null);
@@ -117,6 +118,8 @@ function BookForm({book, onCreated}) {
       handleSubmit={handleSubmit}
       isSending={isSending}
       error={error}
+      step={step}
+      setStep={setStep}
     />
   );
 }
