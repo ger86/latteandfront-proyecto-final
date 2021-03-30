@@ -1,13 +1,7 @@
 import React, {useState} from 'react';
 import Modal from 'components/ui/Modal';
 import BookForm from 'components/common/book/BookForm';
-import {
-  AUTHORS,
-  BOOKS,
-  CATEGORIES,
-  LOGOUT,
-  CATEGORY_CREATE
-} from 'config/router/paths';
+import {AUTHORS, BOOKS, CATEGORIES, LOGOUT, CATEGORY_CREATE} from 'config/router/paths';
 import {Navigation, StyledNavLink, StyledButton} from './styledComponents';
 
 function Menu() {
@@ -15,6 +9,11 @@ function Menu() {
 
   const openModal = () => setOpened(true);
   const closeModal = () => setOpened(false);
+
+  function onCreated() {
+    closeModal();
+  }
+
   return (
     <Navigation>
       <ul>
@@ -40,7 +39,7 @@ function Menu() {
         </li>
       </ul>
       <Modal isOpened={isOpened} onClose={closeModal} title="Añadir Libro">
-        <BookForm />
+        <BookForm onCreated={onCreated} />
       </Modal>
     </Navigation>
   );

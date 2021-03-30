@@ -158,7 +158,7 @@ BookFormView.propTypes = {
   handleDescriptionChange: PropTypes.func.isRequired,
   score: PropTypes.number.isRequired,
   handleScoreChange: PropTypes.func.isRequired,
-  readAt: PropTypes.object.isRequired,
+  readAt: PropTypes.object,
   handleReadAtChange: PropTypes.func.isRequired,
   imageUrl: PropTypes.string,
   handleImageChange: PropTypes.func.isRequired,

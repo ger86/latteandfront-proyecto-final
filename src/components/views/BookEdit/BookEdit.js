@@ -1,10 +1,12 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {generatePath, useHistory, useParams} from 'react-router-dom';
 import BookForm from 'components/common/book/BookForm';
+import {BOOK_DETAIL} from 'config/router/paths';
 import useBook from 'hooks/useBook';
 
 function BookEdit() {
   const params = useParams();
+  const history = useHistory();
   const {
     data: book,
     isLoading: bookAreLoading,
@@ -18,8 +20,13 @@ function BookEdit() {
   if (getBookFailed) {
     return 'Fallo';
   };
+
+  function onCreate(newBook) {
+    history.push(generatePath(BOOK_DETAIL, {id: newBook.id}));
+  }
+
   return (
-    <BookForm book={book} />
+    <BookForm book={book} onCreate={onCreate} />
   );
 }
 

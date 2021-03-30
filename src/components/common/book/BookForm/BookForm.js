@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {generatePath, useHistory} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {BACKEND} from 'consts/backend';
-import {BOOK_DETAIL} from 'config/router/paths';
 import useCategories from 'hooks/useCategories';
 import useAuthors from 'hooks/useAuthors';
 import bookPropTypes from 'propTypes/book';
@@ -11,7 +10,7 @@ import {formatDateToBackendFormat} from 'utils/dateUtils';
 import BookFormView from './BookFormView';
 import prepareCategories from './utils/prepareCategories';
 
-function BookForm({book}) {
+function BookForm({book, onCreated}) {
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState(null);
   const [readAt, setReadAt] = useState(book && book.readAt ? new Date(book.readAt) : null);
@@ -21,7 +20,6 @@ function BookForm({book}) {
   const [image, setImage] = useState(null);
   const [selectedCategories, setSelectedCategories] = useState(book ? book.categories : []);
   const [selectedAuthors, setSelectedAuthors] = useState(book ? book.authors : []);
-  const history = useHistory();
 
   const {
     data: categories,
@@ -65,13 +63,16 @@ function BookForm({book}) {
         description,
         base64Image,
         score,
-        readAt: formatDateToBackendFormat(readAt),
+        readAt: readAt ? formatDateToBackendFormat(readAt) : null,
         categories: prepareCategories(book ? book.categories : [], selectedCategories),
         authors: prepareCategories(book ? book.authors : [], selectedAuthors)
       };
       const url = book ? `${BACKEND}/books/${book.id}` : `${BACKEND}/books`;
       const newBook = await apiClient.post(url, JSON.stringify(data));
-      history.push(generatePath(BOOK_DETAIL, {id: newBook.id}));
+      if (onCreated) {
+        onCreated(newBook);
+      }
+      setIsSending(false);
     } catch (error) {
       setIsSending(false);
       setError(error);
@@ -121,7 +122,8 @@ function BookForm({book}) {
 }
 
 BookForm.propTypes = {
-  book: bookPropTypes
+  book: bookPropTypes,
+  onCreated: PropTypes.func
 };
 
 export default BookForm;
