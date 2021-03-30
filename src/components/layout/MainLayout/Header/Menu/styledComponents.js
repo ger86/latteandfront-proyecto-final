@@ -22,4 +22,10 @@ export const StyledNavLink = styled(NavLink)`
     font-weight: bold;
   }
 `;
+
+export const StyledButton = styled.button`
+  margin-left: 0.5rem;
+  text-decoration: none;
+  color: ${props => props.theme.fontColor.body};
+`;
  

@@ -9,6 +9,7 @@ export const Modal = styled.div`
   height: 100%;
   overflow: hidden;
   outline: 0;
+  background: rgba(0, 0, 0, 0.3);
 `;
 
 export const ModalDialog = styled.div`

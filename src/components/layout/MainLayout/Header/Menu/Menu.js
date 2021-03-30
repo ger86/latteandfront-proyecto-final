@@ -1,8 +1,20 @@
-import React from 'react';
-import {Navigation, StyledNavLink} from './styledComponents';
-import {AUTHORS, BOOKS, CATEGORIES, LOGOUT, BOOK_CREATE, CATEGORY_CREATE} from 'config/router/paths';
+import React, {useState} from 'react';
+import Modal from 'components/ui/Modal';
+import BookForm from 'components/common/book/BookForm';
+import {
+  AUTHORS,
+  BOOKS,
+  CATEGORIES,
+  LOGOUT,
+  CATEGORY_CREATE
+} from 'config/router/paths';
+import {Navigation, StyledNavLink, StyledButton} from './styledComponents';
 
 function Menu() {
+  const [isOpened, setOpened] = useState(false);
+
+  const openModal = () => setOpened(true);
+  const closeModal = () => setOpened(false);
   return (
     <Navigation>
       <ul>
@@ -16,17 +28,20 @@ function Menu() {
           <StyledNavLink to={AUTHORS} activeClassName="active" exact>
             Autores
           </StyledNavLink>
-          <StyledNavLink to={BOOK_CREATE} activeClassName="active" exact>
-            Añadir libro
-          </StyledNavLink>
           <StyledNavLink to={CATEGORY_CREATE} activeClassName="active" exact>
             Añadir categoría
           </StyledNavLink>
+          <StyledButton onClick={openModal} exact>
+            Añadir libro
+          </StyledButton>
           <StyledNavLink to={LOGOUT} activeClassName="active" exact>
             Cerrar sesión
           </StyledNavLink>
         </li>
       </ul>
+      <Modal isOpened={isOpened} onClose={closeModal} title="Añadir Libro">
+        <BookForm />
+      </Modal>
     </Navigation>
   );
 }

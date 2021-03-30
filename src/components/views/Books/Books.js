@@ -21,9 +21,6 @@ function Books() {
       if (!books) {
         return null;
       }
-      console.log(currentAuthorId);
-      console.log(currentCategoryId);
-
       if (currentCategoryId !== '' || currentAuthorId !== '') {
         return books.filter((book) => {
           const hasCategory =
